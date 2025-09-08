@@ -1,34 +1,90 @@
-//!TODO: Replace placeholder images with actual photos of team members when available.
-//!TODO: Add real social media/contact links for team members.
-//!TODO: Consider adding more team members as the team grows.
-//!TODO: Add animations/transitions for expanding/collapsing sections and opening/closing modals.
-//!TODO: Ensure accessibility (e.g., keyboard navigation, ARIA labels) for interactive elements.
+// Team.tsx
 import { useState, useRef, useEffect } from 'react';
 import { Linkedin, Mail, Phone, ChevronDown, ChevronUp, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: [0.17, 0.67, 0.83, 0.67] as [number, number, number, number]
+    }
+  }
+};
+
+const modalVariants = {
+  hidden: { 
+    opacity: 0,
+    scale: 0.8,
+    transition: { duration: 0.3 }
+  },
+  visible: { 
+    opacity: 1,
+    scale: 1,
+    transition: { 
+      duration: 0.4,
+      damping: 25,
+      stiffness: 300
+    }
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.8,
+    transition: { duration: 0.3 }
+  }
+};
+
+const overlayVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+  exit: { opacity: 0 }
+};
 
 const Team = () => {
   const [modalMember, setModalMember] = useState<number | null>(null);
-  const [isClosing, setIsClosing] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
   // Close modal when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-        closeModal();
+        setModalMember(null);
       }
     };
 
-    if (modalMember !== null) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.body.style.overflow = 'hidden';
-    }
-
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
-      document.body.style.overflow = 'unset';
     };
-  }, [modalMember]);
+  }, []);
+
+  // Close modal with Escape key
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setModalMember(null);
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, []);
 
   const teamMembers = [
     {
@@ -79,42 +135,46 @@ const Team = () => {
     }
   ];
 
-  const openModal = (index: number) => {
-    setIsClosing(false);
-    setModalMember(index);
-  };
-
-  const closeModal = () => {
-    setIsClosing(true);
-    setTimeout(() => {
-      setModalMember(null);
-      setIsClosing(false);
-    }, 300); // Match this with the animation duration
-  };
-
   return (
     <div className="pt-20">
       {/* Hero Section */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-[#97CEC8]/20 to-[#FBD66E]/20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="font-spicy text-3xl md:text-5xl lg:text-6xl font-bold text-[#647C9F] mb-4 md:mb-6">
+          <motion.h1 
+            className="font-spicy text-3xl md:text-5xl lg:text-6xl font-bold text-[#647C9F] mb-4 md:mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             Meet Our Team
-          </h1>
-          <p className="text-lg md:text-xl text-[#647C9F]/70 max-w-3xl mx-auto">
+          </motion.h1>
+          <motion.p 
+            className="text-lg md:text-xl text-[#647C9F]/70 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.6 }}
+          >
             Our dedicated team of professionals is passionate about helping children and families
             achieve their full potential through specialized educational and psychological support.
-          </p>
+          </motion.p>
         </div>
       </section>
 
       {/* Team Grid */}
       <section className="py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-4xl mx-auto"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
             {teamMembers.map((member, index) => (
-              <div
+              <motion.div
                 key={index}
                 className="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-2 flex flex-col"
+                variants={itemVariants}
               >
                 <div className="relative">
                   <div className="w-full h-64 bg-gradient-to-br from-[#97CEC8]/30 to-[#FBD66E]/30 flex items-center justify-center relative">
@@ -188,158 +248,186 @@ const Team = () => {
                   </div>
 
                   <div className="mt-auto pt-4">
-                    <button
-                      onClick={() => openModal(index)}
+                    <motion.button
+                      onClick={() => setModalMember(index)}
                       className="w-full py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:opacity-80"
                       style={{
                         backgroundColor: `${member.color}20`,
                         color: member.color
                       }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                     >
                       View Full Profile
-                    </button>
+                    </motion.button>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Modal for full profile */}
-      {modalMember !== null && (
-        <div className={`fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 ${isClosing ? 'animate-fadeOut' : 'animate-fadeIn'}`}>
-          <div
-            ref={modalRef}
-            className={`bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative ${isClosing ? 'animate-scaleOut' : 'animate-scaleIn'}`}
+      <AnimatePresence>
+        {modalMember !== null && (
+          <motion.div
+            className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+            variants={overlayVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
           >
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 z-10 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center text-[#647C9F] hover:bg-gray-100 transition-colors shadow-md"
-              aria-label="Close modal"
+            <motion.div 
+              ref={modalRef}
+              className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative"
+              variants={modalVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
             >
-              <X size={24} />
-            </button>
+              <motion.button
+                onClick={() => setModalMember(null)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center text-[#647C9F] hover:bg-gray-100 transition-colors shadow-md"
+                aria-label="Close modal"
+                whileHover={{ scale: 1.1, rotate: 90 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <X size={24} />
+              </motion.button>
 
-            <div className="relative">
-              <div className="w-full h-64 bg-gradient-to-r from-[#97CEC8]/30 to-[#FBD66E]/30 flex items-center justify-center">
-                <div
-                  className="absolute inset-0 opacity-30"
-                  style={{ backgroundColor: teamMembers[modalMember].color }}
-                />
-                <div className="w-40 h-40 rounded-full bg-white/80 flex items-center justify-center shadow-lg z-10">
-                  <span className="text-gray-500">Photo</span>
+              <div className="relative">
+                <div className="w-full h-64 bg-gradient-to-r from-[#97CEC8]/30 to-[#FBD66E]/30 flex items-center justify-center">
+                  <div
+                    className="absolute inset-0 opacity-30"
+                    style={{ backgroundColor: teamMembers[modalMember].color }}
+                  />
+                  <div className="w-40 h-40 rounded-full bg-white/80 flex items-center justify-center shadow-lg z-10">
+                    <span className="text-gray-500">Photo</span>
+                  </div>
+                </div>
+
+                <div className="absolute bottom-4 right-4">
+                  <div className="flex space-x-3">
+                    {teamMembers[modalMember].socials.map((social, socialIndex) => {
+                      const IconComponent = social.icon;
+                      return (
+                        <a
+                          key={socialIndex}
+                          href={social.href}
+                          className="w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-[#647C9F] hover:bg-white transition-colors shadow-md"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <IconComponent size={18} />
+                        </a>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
 
-              <div className="absolute bottom-4 right-4">
-                <div className="flex space-x-3">
-                  {teamMembers[modalMember].socials.map((social, socialIndex) => {
-                    const IconComponent = social.icon;
-                    return (
-                      <a
-                        key={socialIndex}
-                        href={social.href}
-                        className="w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-[#647C9F] hover:bg-white transition-colors shadow-md"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <IconComponent size={18} />
-                      </a>
-                    );
-                  })}
+              <div className="p-6 md:p-8">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div
+                    className="w-3 h-3 rounded-full"
+                    style={{ backgroundColor: teamMembers[modalMember].color }}
+                  />
+                  <span
+                    className="text-sm font-semibold uppercase tracking-wide"
+                    style={{ color: teamMembers[modalMember].color }}
+                  >
+                    {teamMembers[modalMember].role}
+                  </span>
                 </div>
-              </div>
-            </div>
 
-            <div className="p-6 md:p-8">
-              <div className="flex items-center space-x-3 mb-4">
-                <div
-                  className="w-3 h-3 rounded-full"
-                  style={{ backgroundColor: teamMembers[modalMember].color }}
-                />
-                <span
-                  className="text-sm font-semibold uppercase tracking-wide"
-                  style={{ color: teamMembers[modalMember].color }}
-                >
-                  {teamMembers[modalMember].role}
-                </span>
-              </div>
+                <h3 className="font-spicy text-2xl md:text-3xl font-semibold text-[#647C9F] mb-4">
+                  {teamMembers[modalMember].name}
+                </h3>
 
-              <h3 className="font-spicy text-2xl md:text-3xl font-semibold text-[#647C9F] mb-4">
-                {teamMembers[modalMember].name}
-              </h3>
+                <p className="text-[#647C9F]/70 leading-relaxed mb-6">
+                  {teamMembers[modalMember].bio}
+                </p>
 
-              <p className="text-[#647C9F]/70 leading-relaxed mb-6">
-                {teamMembers[modalMember].bio}
-              </p>
-
-              <div className="mb-6">
-                <h4 className="font-semibold text-[#647C9F] mb-3">Qualifications:</h4>
-                <ul className="text-[#647C9F]/70 space-y-2">
-                  {teamMembers[modalMember].qualifications.map((qual, i) => (
-                    <li key={i} className="flex">
-                      <span className="w-1.5 h-1.5 rounded-full mt-2 mr-2" style={{ backgroundColor: teamMembers[modalMember].color }}></span>
-                      {qual}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {teamMembers[modalMember].specialties && (
                 <div className="mb-6">
-                  <h4 className="font-semibold text-[#647C9F] mb-3">Specialties:</h4>
+                  <h4 className="font-semibold text-[#647C9F] mb-3">Qualifications:</h4>
                   <ul className="text-[#647C9F]/70 space-y-2">
-                    {teamMembers[modalMember].specialties.map((specialty, i) => (
+                    {teamMembers[modalMember].qualifications.map((qual, i) => (
                       <li key={i} className="flex">
                         <span className="w-1.5 h-1.5 rounded-full mt-2 mr-2" style={{ backgroundColor: teamMembers[modalMember].color }}></span>
-                        {specialty}
+                        {qual}
                       </li>
                     ))}
                   </ul>
                 </div>
-              )}
 
-              {teamMembers[modalMember].contact && (
-                <div className="mb-6">
-                  <h4 className="font-semibold text-[#647C9F] mb-3">Contact:</h4>
-                  <div className="text-[#647C9F]/70 space-y-2">
-                    <div className="flex items-center">
-                      <Phone size={16} className="mr-2" />
-                      <span>{teamMembers[modalMember].contact.phone}</span>
-                    </div>
-                    <div className="flex items-center">
-                      <Mail size={16} className="mr-2" />
-                      <span>{teamMembers[modalMember].contact.email}</span>
-                    </div>
+                {teamMembers[modalMember].specialties && (
+                  <div className="mb-6">
+                    <h4 className="font-semibold text-[#647C9F] mb-3">Specialties:</h4>
+                    <ul className="text-[#647C9F]/70 space-y-2">
+                      {teamMembers[modalMember].specialties.map((specialty, i) => (
+                        <li key={i} className="flex">
+                          <span className="w-1.5 h-1.5 rounded-full mt-2 mr-2" style={{ backgroundColor: teamMembers[modalMember].color }}></span>
+                          {specialty}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                </div>
-              )}
+                )}
 
-              <div className="mt-6 pt-6 border-t border-[#647C9F]/20">
-                <h4 className="font-semibold text-[#647C9F] mb-4">About Me:</h4>
-                <p className="text-[#647C9F]/70 leading-relaxed">
-                  {teamMembers[modalMember].detailedBio}
-                </p>
+                {teamMembers[modalMember].contact && (
+                  <div className="mb-6">
+                    <h4 className="font-semibold text-[#647C9F] mb-3">Contact:</h4>
+                    <div className="text-[#647C9F]/70 space-y-2">
+                      <div className="flex items-center">
+                        <Phone size={16} className="mr-2" />
+                        <span>{teamMembers[modalMember].contact.phone}</span>
+                      </div>
+                      <div className="flex items-center">
+                        <Mail size={16} className="mr-2" />
+                        <span>{teamMembers[modalMember].contact.email}</span>
+                      </div>
+                  </div>
+                  </div>
+                )}
+
+                <div className="mt-6 pt-6 border-t border-[#647C9F]/20">
+                  <h4 className="font-semibold text-[#647C9F] mb-4">About Me:</h4>
+                  <p className="text-[#647C9F]/70 leading-relaxed">
+                    {teamMembers[modalMember].detailedBio}
+                  </p>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Values Section */}
       <section className="py-16 md:py-20 bg-gradient-to-r from-[#97CEC8]/10 to-[#FBD66E]/10">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16">
+          <motion.div 
+            className="text-center mb-12 md:mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.6 }}
+          >
             <h2 className="font-spicy text-2xl md:text-4xl lg:text-5xl font-bold text-[#647C9F] mb-4 md:mb-6">
               Our Approach
             </h2>
             <p className="text-lg md:text-xl text-[#647C9F]/70 max-w-3xl mx-auto">
               We believe in a holistic approach to education and mental health that focuses on the whole child.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
             {[
               {
                 title: 'Individualized Support',
@@ -357,7 +445,11 @@ const Team = () => {
                 color: '#E77C96'
               }
             ].map((value, index) => (
-              <div key={index} className="text-center px-4">
+              <motion.div 
+                key={index} 
+                className="text-center px-4"
+                variants={itemVariants}
+              >
                 <div
                   className="w-16 h-16 md:w-20 md:h-20 mx-auto rounded-full flex items-center justify-center mb-4 md:mb-6"
                   style={{ backgroundColor: `${value.color}20` }}
@@ -373,50 +465,14 @@ const Team = () => {
                 <p className="text-[#647C9F]/70 leading-relaxed">
                   {value.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       <style>
         {`
-          @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-          }
-          
-          @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-          }
-          
-          @keyframes scaleIn {
-            from { transform: scale(0.95); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-          }
-          
-          @keyframes scaleOut {
-            from { transform: scale(1); opacity: 1; }
-            to { transform: scale(0.95); opacity: 0; }
-          }
-          
-          .animate-fadeIn {
-            animation: fadeIn 0.3s ease-out forwards;
-          }
-          
-          .animate-fadeOut {
-            animation: fadeOut 0.3s ease-out forwards;
-          }
-          
-          .animate-scaleIn {
-            animation: scaleIn 0.3s ease-out forwards;
-          }
-          
-          .animate-scaleOut {
-            animation: scaleOut 0.3s ease-out forwards;
-          }
-          
           .line-clamp-3 {
             display: -webkit-box;
             -webkit-line-clamp: 3;

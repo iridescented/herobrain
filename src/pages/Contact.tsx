@@ -1,5 +1,38 @@
+// Contact.tsx
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle, MessageCircle, Facebook, Instagram } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: [0.17, 0.67, 0.83, 0.67] as [number, number, number, number]
+    }
+  }
+};
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.6 }
+  }
+};
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -30,22 +63,41 @@ const Contact = () => {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-[#97CEC8]/20 to-[#FBD66E]/20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="font-spicy text-4xl md:text-6xl font-bold text-[#647C9F] mb-6">
+          <motion.h1 
+            className="font-spicy text-4xl md:text-6xl font-bold text-[#647C9F] mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             Get In Touch With Us
-          </h1>
-          <p className="text-xl text-[#647C9F]/70 max-w-3xl mx-auto">
+          </motion.h1>
+          <motion.p 
+            className="text-xl text-[#647C9F]/70 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.6 }}
+          >
             We're here to answer your questions and discuss how we can support your child's educational journey.
             Reach out to schedule a consultation or learn more about our services.
-          </p>
+          </motion.p>
         </div>
       </section>
 
       {/* Contact Section */}
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <motion.div 
+            className="grid grid-cols-1 lg:grid-cols-2 gap-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={containerVariants}
+          >
             {/* Contact Info */}
-            <div className="space-y-8 max-w-2xl">
+            <motion.div 
+              className="space-y-8 max-w-2xl"
+              variants={itemVariants}
+            >
               <div>
                 <h2 className="font-spicy text-3xl font-bold text-[#647C9F] mb-6">
                   Contact Information
@@ -94,7 +146,11 @@ const Contact = () => {
                     color: '#25D366'
                   }
                 ].map((contact, index) => (
-                  <div key={index} className="flex items-start space-x-4 group">
+                  <motion.div 
+                    key={index} 
+                    className="flex items-start space-x-4 group"
+                    variants={itemVariants}
+                  >
                     <div
                       className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200"
                       style={{ backgroundColor: `${contact.color}20` }}
@@ -115,12 +171,15 @@ const Contact = () => {
                         {contact.description}
                       </p>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
 
               {/* Social Media */}
-              <div className="pt-6">
+              <motion.div 
+                className="pt-6"
+                variants={itemVariants}
+              >
                 <h3 className="font-spicy text-xl font-semibold text-[#647C9F] mb-4">
                   Follow Us On Social Media
                 </h3>
@@ -138,17 +197,25 @@ const Contact = () => {
                     <Instagram className="w-6 h-6 text-[#647C9F]" />
                   </a>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* Contact Form */}
-            <div className="bg-white rounded-2xl shadow-xl p-8 max-w-2xl">
+            <motion.div 
+              className="bg-white rounded-2xl shadow-xl p-8 max-w-2xl"
+              variants={itemVariants}
+            >
               <h3 className="font-spicy text-2xl font-semibold text-[#647C9F] mb-6">
                 Send us a Message
               </h3>
 
               {isSubmitted ? (
-                <div className="text-center py-8">
+                <motion.div 
+                  className="text-center py-8"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
                   <div className="w-16 h-16 bg-[#97CEC8]/20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <CheckCircle className="w-8 h-8 text-[#97CEC8]" />
                   </div>
@@ -158,9 +225,15 @@ const Contact = () => {
                   <p className="text-[#647C9F]/70">
                     Thank you for reaching out. We'll get back to you within 24 hours!
                   </p>
-                </div>
+                </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <motion.form 
+                  onSubmit={handleSubmit} 
+                  className="space-y-6"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-semibold text-[#647C9F] mb-2">
@@ -231,17 +304,19 @@ const Contact = () => {
                     />
                   </div>
 
-                  <button
+                  <motion.button
                     type="submit"
                     className="group w-full bg-gradient-to-r from-[#97CEC8] to-[#647C9F] text-white py-4 rounded-lg font-semibold hover:shadow-xl hover:scale-[1.02] transition-all duration-200 flex items-center justify-center space-x-2"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
                     <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     <span>Send Message</span>
-                  </button>
-                </form>
+                  </motion.button>
+                </motion.form>
               )}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -249,16 +324,28 @@ const Contact = () => {
       <section className="py-20 bg-gradient-to-b from-[#97CEC8]/10 to-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-16">
+            <motion.div 
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.6 }}
+            >
               <h2 className="font-spicy text-3xl md:text-5xl font-bold text-[#647C9F] mb-6">
                 Frequently Asked Questions
               </h2>
               <p className="text-xl text-[#647C9F]/70">
                 Here are some common questions we receive from parents and caregivers.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="space-y-6">
+            <motion.div 
+              className="space-y-6"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
               {[
                 {
                   question: 'What types of educational support do you provide?',
@@ -281,16 +368,20 @@ const Contact = () => {
                   answer: 'Sessions are typically 60 minutes long and are tailored to each child\'s specific needs. We begin with an assessment to understand your child\'s strengths and challenges, then develop a personalized learning plan.'
                 }
               ].map((faq, index) => (
-                <div key={index} className="bg-white rounded-2xl shadow-lg p-6">
+                <motion.div 
+                  key={index} 
+                  className="bg-white rounded-2xl shadow-lg p-6"
+                  variants={itemVariants}
+                >
                   <h3 className="font-spicy text-lg font-semibold text-[#647C9F] mb-3">
                     {faq.question}
                   </h3>
                   <p className="text-[#647C9F]/70 leading-relaxed">
                     {faq.answer}
                   </p>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

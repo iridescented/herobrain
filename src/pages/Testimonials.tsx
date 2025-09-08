@@ -1,5 +1,38 @@
+// Testimonials.tsx
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: [0.17, 0.67, 0.83, 0.67] as [number, number, number, number]
+    }
+  }
+};
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.6 }
+  }
+};
 
 const Testimonials = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -75,12 +108,22 @@ const Testimonials = () => {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-[#97CEC8]/20 to-[#FBD66E]/20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="font-spicy text-4xl md:text-6xl font-bold text-[#647C9F] mb-6">
+          <motion.h1 
+            className="font-spicy text-4xl md:text-6xl font-bold text-[#647C9F] mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             What Our Clients Say
-          </h1>
-          <p className="text-xl text-[#647C9F]/70 max-w-3xl mx-auto">
+          </motion.h1>
+          <motion.p 
+            className="text-xl text-[#647C9F]/70 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.6 }}
+          >
             Don't just take our word for it – hear from the amazing clients we've had the pleasure of working with.
-          </p>
+          </motion.p>
         </div>
       </section>
 
@@ -88,7 +131,13 @@ const Testimonials = () => {
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
-            <div className="relative bg-white rounded-3xl shadow-xl p-8 md:p-12">
+            <motion.div 
+              className="relative bg-white rounded-3xl shadow-xl p-8 md:p-12"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.6 }}
+            >
               <div
                 className="absolute top-8 left-8 w-16 h-16 rounded-full flex items-center justify-center"
                 style={{ backgroundColor: `${testimonials[currentTestimonial].color}20` }}
@@ -125,27 +174,37 @@ const Testimonials = () => {
                   </div>
 
                   <div className="flex space-x-4">
-                    <button
+                    <motion.button
                       onClick={prevTestimonial}
                       className="w-12 h-12 bg-gradient-to-r from-[#97CEC8] to-[#647C9F] text-white rounded-full flex items-center justify-center hover:shadow-lg transition-all duration-200 hover:scale-110"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
                     >
                       <ChevronLeft className="w-6 h-6" />
-                    </button>
-                    <button
+                    </motion.button>
+                    <motion.button
                       onClick={nextTestimonial}
                       className="w-12 h-12 bg-gradient-to-r from-[#97CEC8] to-[#647C9F] text-white rounded-full flex items-center justify-center hover:shadow-lg transition-all duration-200 hover:scale-110"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
                     >
                       <ChevronRight className="w-6 h-6" />
-                    </button>
+                    </motion.button>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Testimonial Indicators */}
-            <div className="flex justify-center space-x-3 mt-8">
+            <motion.div 
+              className="flex justify-center space-x-3 mt-8"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            >
               {testimonials.map((_, index) => (
-                <button
+                <motion.button
                   key={index}
                   onClick={() => setCurrentTestimonial(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-200 ${
@@ -153,9 +212,11 @@ const Testimonials = () => {
                       ? 'bg-[#E77C96] scale-125'
                       : 'bg-[#647C9F]/30 hover:bg-[#647C9F]/50'
                   }`}
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
                 />
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -163,20 +224,33 @@ const Testimonials = () => {
       {/* All Testimonials Grid */}
       <section className="py-20 bg-gradient-to-b from-[#97CEC8]/10 to-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.6 }}
+          >
             <h2 className="font-spicy text-3xl md:text-5xl font-bold text-[#647C9F] mb-6">
               More Happy Clients
             </h2>
             <p className="text-xl text-[#647C9F]/70 max-w-2xl mx-auto">
               Every project is an opportunity to build lasting relationships and create meaningful impact.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
             {testimonials.map((testimonial, index) => (
-              <div
+              <motion.div
                 key={index}
                 className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 hover:-translate-y-2"
+                variants={itemVariants}
               >
                 <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
@@ -208,29 +282,55 @@ const Testimonials = () => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[#E77C96] to-[#FBD66E]">
+      <motion.section 
+        className="py-20 bg-gradient-to-r from-[#E77C96] to-[#FBD66E]"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.8 }}
+      >
         <div className="container mx-auto px-4 text-center">
-          <h2 className="font-spicy text-3xl md:text-5xl font-bold text-white mb-6">
-            Ready to Join Our Happy Clients?
-          </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Let's work together to create something amazing that your customers will love.
-          </p>
-          <a
-            href="/contact"
-            className="inline-block px-10 py-5 bg-white text-[#647C9F] rounded-full font-bold text-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
+          <motion.h2 
+            className="font-spicy text-3xl md:text-5xl font-bold text-white mb-6"
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
           >
-            Start Your Project
-          </a>
+            Ready to Join Our Happy Clients?
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-white/90 mb-8 max-w-2xl mx-auto"
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            Let's work together to create something amazing that your customers will love.
+          </motion.p>
+          <motion.div 
+            className="flex justify-center"
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
+            <a
+              href="/contact"
+              className="inline-block px-10 py-5 bg-white text-[#647C9F] rounded-full font-bold text-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
+            >
+              Start Your Project
+            </a>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 };
