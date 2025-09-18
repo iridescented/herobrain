@@ -1,0 +1,200 @@
+[
+  {
+    "id": "manual-zhang",
+    "quote": "Ms Melissa，您好！一直都想好好谢谢您，一直以来您给张硕的帮助实在太多了。那些调节情绪的方法，就像及时雨，让他能更好地应对各种小烦恼。\n听说您要离开学校，我们心里满是不舍。但也明白您是去追寻新的方向，真心为您高兴，也祝愿您未来的路一帆风顺，心想事成。在剩下的日子里，还得劳您多费心照顾张硕。以后他要是找您聊天或寻求帮助，希望您别嫌他烦呀。再次感谢您，您的这份善意和温暖，我们会一直记在心里 。",
+    "author": "Mrs Zhang",
+    "role": "家长 / Parent",
+    "company": "Family Testimonial",
+    "rating": 5,
+    "color": "#E77C96",
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "status": "APPROVED"
+  },
+  {
+    "id": "loke-justine",
+    "quote": "Ms Melissa is a patient, friendly, and approachable teacher whom I know her for 8 years. She creates a supportive environment where students feel encouraged and valued. We greatly appreciate her dedication and care for my children.",
+    "author": "LY Loke (Justine)",
+    "role": "Parent",
+    "company": "Google Review",
+    "rating": 5,
+    "color": "#97CEC8",
+    "createdAt": "2024-08-27T00:00:00.000Z",
+    "status": "APPROVED"
+  },
+  {
+    "id": "c-c",
+    "quote": "The teacher Melissa is truly amazing. She is so patient, caring, and dedicated. My children have improved a lot since joining, and we’re very grateful for her guidance.",
+    "author": "C C",
+    "role": "Parent",
+    "company": "Google Review",
+    "rating": 5,
+    "color": "#FBD66E",
+    "createdAt": "2024-07-01T00:00:00.000Z",
+    "status": "APPROVED"
+  },
+  {
+    "id": "ponggoron-cyn",
+    "quote": "Ms. Melissa has been teaching my son for 5 years, and we are so grateful for her patience and knowledge. When he first started, he spoke very little, but with her guidance he gained confidence, speaks in more meaningful sentences, and his social skills have improved a lot.",
+    "author": "Cyn Ponggoron",
+    "role": "Parent",
+    "company": "Google Review",
+    "rating": 5,
+    "color": "#E77C96",
+    "createdAt": "2024-07-10T00:00:00.000Z",
+    "status": "APPROVED"
+  },
+  {
+    "id": "leong-giana",
+    "quote": "My son has been with Hero Brain for 2 years, and the progress is amazing. Ms Melissa is patient, caring, and truly understand children with autism. He has improved so much in communication, focus, and confidence.",
+    "author": "Giana Leong",
+    "role": "Parent",
+    "company": "Google Review",
+    "rating": 5,
+    "color": "#97CEC8",
+    "createdAt": "2024-07-01T00:00:00.000Z",
+    "status": "APPROVED"
+  },
+  {
+    "id": "ng-jia-shuen",
+    "quote": "Ms. Melissa is not only a patient and professional teacher, but also someone who has been a big part of my learning journey. She has taught me for almost 10 years, from primary school all the way to secondary school, and with her guidance, I was able to graduate with 5As in my IGCSE O Levels.",
+    "author": "Ng Jia Shuen",
+    "role": "Student",
+    "company": "Google Review",
+    "rating": 5,
+    "color": "#FBD66E",
+    "createdAt": "2024-07-01T00:00:00.000Z",
+    "status": "APPROVED"
+  },
+  {
+    "id": "chua-justin",
+    "quote": "I have been tutored by teacher Melissa since young, and she is a very patient teacher and has a passion for helping students of any help. And when I say she cares for her students she genuinely cares for her students from the bottom of her heart.",
+    "author": "Justin Chua",
+    "role": "Student",
+    "company": "Google Review",
+    "rating": 5,
+    "color": "#E77C96",
+    "createdAt": "2024-07-01T00:00:00.000Z",
+    "status": "APPROVED"
+  },
+  {
+    "id": "foong-enica",
+    "quote": "I have had the pleasure of engaging with Ms Melissa over the past 4 years, and I am consistently impressed by the teachers’ unwavering commitment to academic excellence and student development. I appreciate the teacher’s patience and how she corrects me whenever I make a mistake.",
+    "author": "Enica Foong",
+    "role": "Student",
+    "company": "Google Review",
+    "rating": 5,
+    "color": "#97CEC8",
+    "createdAt": "2024-07-01T00:00:00.000Z",
+    "status": "APPROVED"
+  },
+  {
+    "id": "tan-cherish",
+    "quote": "As someone who was once Ms Melissa’s student almost a decade ago, I can confidently say she is one of the most patient, kind, and genuinely caring individuals I have ever met. She has an exceptional gift for understanding and connecting with children.",
+    "author": "Cherish Tan",
+    "role": "Student",
+    "company": "Google Review",
+    "rating": 5,
+    "color": "#FBD66E",
+    "createdAt": "2024-07-01T00:00:00.000Z",
+    "status": "APPROVED"
+  },
+  {
+    "id": "gan-janette",
+    "quote": "When I still in forest city school in Grade 6 struggle a lot and Ms.Melissa know that I cannot concentrate on my lesson and she help me to understand more thing in my subject. And she is kind, understanding and patient.",
+    "author": "Janette Gan",
+    "role": "Student",
+    "company": "Google Review",
+    "rating": 5,
+    "color": "#E77C96",
+    "createdAt": "2024-08-27T00:00:00.000Z",
+    "status": "APPROVED"
+  },
+  {
+    "id": "li-shi-heng",
+    "quote": "While I was still studying in Johor, Ms Melissa tutored me and it was really helpful. She's a really patient teacher and always dedicate her support to her students, and she could always give her most to help her students.",
+    "author": "Li Shi Heng",
+    "role": "Student",
+    "company": "Google Review",
+    "rating": 5,
+    "color": "#97CEC8",
+    "createdAt": "2024-08-27T00:00:00.000Z",
+    "status": "APPROVED"
+  },
+  {
+    "id": "pang-harvey",
+    "quote": "I’ve known Teacher Merlissa for over 10 years, and she’s been more than just a teacher — she’s a friend, a role model, and one of the most loving people in my life. She made learning fun, listened when I struggled to express myself, and always made her students feel valued.",
+    "author": "Harvey Pang",
+    "role": "Student",
+    "company": "Google Review",
+    "rating": 5,
+    "color": "#FBD66E",
+    "createdAt": "2024-07-01T00:00:00.000Z",
+    "status": "APPROVED"
+  },
+  {
+    "id": "yoeng-jack",
+    "quote": "Ms Mellisa is really dedicated to helping kids in needs, she has the patience and knowledge, and most importantly, she is able to build the bond and trust with the kids in order for the strategies to work.",
+    "author": "jack yoeng",
+    "role": "Parent",
+    "company": "Google Review",
+    "rating": 5,
+    "color": "#E77C96",
+    "createdAt": "2024-07-01T00:00:00.000Z",
+    "status": "APPROVED"
+  },
+  {
+    "id": "fu-peimin",
+    "quote": "Ms Melissa is an excellent teacher, I recommend her.",
+    "author": "Peimin Fu",
+    "role": "Parent",
+    "company": "Google Review",
+    "rating": 5,
+    "color": "#97CEC8",
+    "createdAt": "2024-08-27T00:00:00.000Z",
+    "status": "APPROVED"
+  },
+  {
+    "id": "kira-patrick",
+    "quote": "The founder of the place helped me when i was in primary. The founder is kind, caring and supportive of me.",
+    "author": "Patrick Kira",
+    "role": "Student",
+    "company": "Google Review",
+    "rating": 5,
+    "color": "#FBD66E",
+    "createdAt": "2024-07-01T00:00:00.000Z",
+    "status": "APPROVED"
+  },
+  {
+    "id": "wong-elaine",
+    "quote": "What touched me most is how Ms. Melissa truly sees each child. She listens with patience, notices the little things that others might overlook, and adapts her teaching so every child feels understood. My children feel safe confiding in her.",
+    "author": "Elaine Wong",
+    "role": "Parent",
+    "company": "Google Review",
+    "rating": 5,
+    "color": "#E77C96",
+    "createdAt": "2024-09-10T00:00:00.000Z",
+    "status": "APPROVED"
+  },
+  {
+    "id": "goh-siew-bee",
+    "quote": "My child was struggling in school and gradually lost confidence. A friend recommended Teacher Melissa to me, and I'm so glad I found her. She's incredibly patient and connects well with children. Over time, I've seen not only academic progress, but also more smiles and a renewed desire to attend class.",
+    "author": "Goh Siew bee",
+    "role": "Parent",
+    "company": "Google Review",
+    "rating": 5,
+    "color": "#97CEC8",
+    "createdAt": "2024-07-01T00:00:00.000Z",
+    "status": "APPROVED"
+  },
+  {
+    "id": "lau-lynn",
+    "quote": "My child contracted meningitis when he was three months old, which left him with memory problems. Later, I was introduced to Teacher Melissa. After over a year of instruction, he finally memorized everything from A to Z. Thank you so much!",
+    "author": "Lynn Lau",
+    "role": "Parent",
+    "company": "Google Review",
+    "rating": 5,
+    "color": "#FBD66E",
+    "createdAt": "2024-07-01T00:00:00.000Z",
+    "status": "APPROVED"
+  }
+]

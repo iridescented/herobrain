@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Sparkles, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 
 const Footer = () => {
+  const year = new Date().getFullYear();
   return (
     <footer className="bg-gradient-to-br from-[#647C9F] via-[#97CEC8] to-[#647C9F] text-white">
       <div className="container mx-auto px-4 py-12">
@@ -15,7 +16,7 @@ const Footer = () => {
               <span className="font-spicy text-2xl font-bold">Hero Brain</span>
             </div>
             <p className="text-white/90 leading-relaxed">
-              Creating playful yet professional experiences that bring people together and inspire collaboration.
+              //Crafting playful, human-centered experiences that unite teams, spark creativity, and drive meaningful results.//
             </p>
           </div>
 
@@ -60,7 +61,7 @@ const Footer = () => {
           </div>
 
           {/* Social Media */}
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
             <h3 className="font-spicy text-lg font-semibold">Follow Us</h3>
             <div className="flex space-x-4">
               {[
@@ -78,12 +79,12 @@ const Footer = () => {
                 </a>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="border-t border-white/20 mt-8 pt-8 text-center">
           <p className="text-white/80">
-            © 2025 Hero Brain. Made with ❤️ in Malaysia. All rights reserved.
+            © {year} Hero Brain. Made with ❤️ in Malaysia. All rights reserved.
           </p>
         </div>
       </div>

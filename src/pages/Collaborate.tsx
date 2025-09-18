@@ -40,25 +40,25 @@ const Collaborate = () => {
     {
       icon: Users,
       title: 'Diverse Perspectives',
-      description: 'Bring together different viewpoints and expertise to create innovative solutions.',
+      description: '//Bring together different viewpoints and expertise to create innovative solutions.//',
       color: '#97CEC8'
     },
     {
       icon: Lightbulb,
       title: 'Creative Synergy',
-      description: 'Combine our creative energies to generate ideas that neither of us could achieve alone.',
+      description: '//Combine our creative energies to generate ideas that neither of us could achieve alone.//',
       color: '#FBD66E'
     },
     {
       icon: Rocket,
       title: 'Amplified Impact',
-      description: 'Reach new audiences and markets by leveraging our combined networks and resources.',
+      description: '//Reach new audiences and markets by leveraging our combined networks and resources.//',
       color: '#EEA27B'
     },
     {
       icon: Heart,
       title: 'Meaningful Relationships',
-      description: 'Build lasting professional relationships based on mutual respect and shared values.',
+      description: '//Build lasting professional relationships based on mutual respect and shared values.//',
       color: '#E77C96'
     }
   ];
@@ -66,17 +66,17 @@ const Collaborate = () => {
   const collaborationTypes = [
     {
       title: 'Creative Partnerships',
-      description: 'Joint projects that combine our creative talents with your unique expertise.',
+      description: '//Joint projects that combine our creative talents with your unique expertise.//',
       examples: ['Co-branded campaigns', 'Collaborative content creation', 'Design partnerships']
     },
     {
       title: 'Strategic Alliances',
-      description: 'Long-term partnerships that benefit both our organizations and clients.',
+      description: '//Long-term partnerships that benefit both our organizations and clients.//',
       examples: ['Referral programs', 'Joint service offerings', 'Shared resources']
     },
     {
       title: 'Community Building',
-      description: 'Working together to create positive impact in our communities.',
+      description: '//Working together to create positive impact in our communities.//',
       examples: ['Nonprofit collaborations', 'Educational initiatives', 'Social impact projects']
     }
   ];
@@ -114,9 +114,9 @@ const Collaborate = () => {
               className="text-xl md:text-2xl text-[#647C9F]/70 leading-relaxed mb-8"
               variants={itemVariants}
             >
-              We believe the best ideas come from collaboration. Whether you're a fellow creative,
+              //We believe the best ideas come from collaboration. Whether you're a fellow creative,
               a business owner, or an organization with a mission, we'd love to explore how we can
-              work together to create something meaningful.
+              work together to create something meaningful.//
             </motion.p>
 
             <motion.div variants={itemVariants}>
@@ -146,8 +146,8 @@ const Collaborate = () => {
               Why Collaborate with Us?
             </h2>
             <p className="text-xl text-[#647C9F]/70 max-w-3xl mx-auto">
-              Collaboration isn't just about working together – it's about creating something
-              greater than the sum of our individual parts.
+              //Collaboration isn't just about working together – it's about creating something
+              greater than the sum of our individual parts.//
             </p>
           </motion.div>
 
@@ -278,19 +278,19 @@ const Collaborate = () => {
                 {
                   step: '01',
                   title: 'Connect & Explore',
-                  description: 'We start with a friendly chat to understand your ideas, goals, and how we might work together.',
+                  description: '//We start with a friendly chat to understand your ideas, goals, and how we might work together.//',
                   color: '#97CEC8'
                 },
                 {
                   step: '02',
                   title: 'Plan & Design',
-                  description: 'Together, we create a collaboration plan that leverages both our strengths and aligns with our values.',
+                  description: '//Together, we create a collaboration plan that leverages both our strengths and aligns with our values.//',
                   color: '#FBD66E'
                 },
                 {
                   step: '03',
                   title: 'Create & Launch',
-                  description: 'We bring our shared vision to life, maintaining open communication throughout the process.',
+                  description: '//We bring our shared vision to life, maintaining open communication throughout the process.//',
                   color: '#E77C96'
                 }
               ].map((step, index) => (
@@ -339,8 +339,8 @@ const Collaborate = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            Whether you have a specific project in mind or just want to explore possibilities,
-            we'd love to hear from you. Let's create something amazing together!
+            //Whether you have a specific project in mind or just want to explore possibilities,
+            we'd love to hear from you. Let's create something amazing together!//
           </motion.p>
           <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center"

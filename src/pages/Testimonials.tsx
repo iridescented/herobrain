@@ -1,16 +1,15 @@
 // Testimonials.tsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { fetchTestimonials, Testimonial } from '../services/testimonialsService';
 
 // Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
+    transition: { staggerChildren: 0.1 }
   }
 };
 
@@ -19,96 +18,75 @@ const itemVariants = {
   visible: {
     y: 0,
     opacity: 1,
-    transition: {
-      duration: 0.5,
-      ease: [0.17, 0.67, 0.83, 0.67] as [number, number, number, number]
-    }
-  }
-};
-
-const fadeIn = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { duration: 0.6 }
+    transition: { duration: 0.5, ease: [0.17, 0.67, 0.83, 0.67] as [number, number, number, number] }
   }
 };
 
 const Testimonials = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [allTestimonials, setAllTestimonials] = useState<Testimonial[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const intervalRef = useRef<number | null>(null);
 
-  const testimonials = [
-    {
-      quote: "Working with this team has been an absolute pleasure. They brought our vision to life with creativity and professionalism that exceeded our expectations.",
-      author: "Sarah M.",
-      role: "Marketing Director",
-      company: "TechStart Inc.",
-      rating: 5,
-      color: '#E77C96'
-    },
-    {
-      quote: "The collaborative approach and attention to detail made all the difference. Our project was delivered on time and beyond what we imagined possible.",
-      author: "Michael R.",
-      role: "CEO",
-      company: "GrowthCorp",
-      rating: 5,
-      color: '#97CEC8'
-    },
-    {
-      quote: "Their playful yet professional style perfectly matched our brand. The team understood our needs and delivered exceptional results.",
-      author: "Jennifer L.",
-      role: "Creative Manager",
-      company: "BrightIdeas Co.",
-      rating: 5,
-      color: '#FBD66E'
-    },
-    {
-      quote: "From concept to completion, the team was responsive, creative, and genuinely cared about our success. Highly recommended!",
-      author: "David K.",
-      role: "Founder",
-      company: "Innovation Labs",
-      rating: 5,
-      color: '#EEA27B'
-    },
-    {
-      quote: "The website they created for us has received countless compliments. It perfectly captures our brand personality and converts visitors into customers.",
-      author: "Lisa W.",
-      role: "Business Owner",
-      company: "Wellness Studio",
-      rating: 5,
-      color: '#647C9F'
-    },
-    {
-      quote: "Their team building workshop transformed our workplace culture. The activities were engaging and the results have been lasting.",
-      author: "Robert H.",
-      role: "HR Director",
-      company: "Global Solutions",
-      rating: 5,
-      color: '#E77C96'
-    }
-  ];
+  // Pick a featured subset for carousel (top by rating, up to N)
+  const FEATURED_COUNT = 5;
+  const featuredTestimonials = useMemo(() => {
+    if (!allTestimonials.length) return [];
+    const sorted = [...allTestimonials].sort(
+      (a, b) => (b.rating || 0) - (a.rating || 0)
+    );
+    return sorted.slice(0, FEATURED_COUNT);
+  }, [allTestimonials]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [testimonials.length]);
+    (async () => {
+      try {
+        setLoading(true);
+        const data = await fetchTestimonials();
+        setAllTestimonials(data);
+      } catch (e: any) {
+        setError(e.message || 'Failed to load testimonials');
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
 
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  const startAuto = (len: number) => {
+    if (!len) return;
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = window.setInterval(() => {
+      setCurrentTestimonial(prev => (prev + 1) % len);
+    }, 10000);
   };
 
-  const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  useEffect(() => {
+    startAuto(featuredTestimonials.length);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [featuredTestimonials.length]);
+
+  const next = () => {
+    if (!featuredTestimonials.length) return;
+    setCurrentTestimonial(p => (p + 1) % featuredTestimonials.length);
+    startAuto(featuredTestimonials.length);
   };
+  const prev = () => {
+    if (!featuredTestimonials.length) return;
+    setCurrentTestimonial(p => (p - 1 + featuredTestimonials.length) % featuredTestimonials.length);
+    startAuto(featuredTestimonials.length);
+  };
+
+  const active = featuredTestimonials[currentTestimonial];
 
   return (
     <div className="pt-20">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-[#97CEC8]/20 to-[#FBD66E]/20">
         <div className="container mx-auto px-4 text-center">
-          <motion.h1 
+          <motion.h1
             className="font-spicy text-4xl md:text-6xl font-bold text-[#647C9F] mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -116,7 +94,7 @@ const Testimonials = () => {
           >
             What Our Clients Say
           </motion.h1>
-          <motion.p 
+          <motion.p
             className="text-xl text-[#647C9F]/70 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -131,155 +109,127 @@ const Testimonials = () => {
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
-            <motion.div 
-              className="relative bg-white rounded-3xl shadow-xl p-8 md:p-12"
+            <motion.div
+              className="relative bg-white rounded-3xl shadow-xl p-8 md:p-12 min-h-[420px]"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.6 }}
             >
-              <div
-                className="absolute top-8 left-8 w-16 h-16 rounded-full flex items-center justify-center"
-                style={{ backgroundColor: `${testimonials[currentTestimonial].color}20` }}
+              {loading && <div className="text-center text-[#647C9F]/60">Loading testimonials...</div>}
+              {!loading && error && <div className="text-center text-red-500">{error}</div>}
+              {!loading && !error && !allTestimonials.length && <div className="text-center text-[#647C9F]/60">No testimonials available yet.</div>}
+              {!loading && !error && featuredTestimonials.length > 0 && active && (
+                <>
+                  <div
+                    className="absolute top-8 left-8 w-16 h-16 rounded-full flex items-center justify-center"
+                    style={{ backgroundColor: `${active.color || '#97CEC8'}20` }}
+                  >
+                    <Quote className="w-8 h-8" style={{ color: active.color || '#97CEC8' }} />
+                  </div>
+                  <div className="pt-12 px-16 md:px-20">
+                    <div className="flex mb-6">
+                      {[...Array(active.rating || 5)].map((_, i) => (
+                        <Star key={i} className="w-6 h-6 fill-current" style={{ color: active.color || '#97CEC8' }} />
+                      ))}
+                    </div>
+                    <blockquote className="text-2xl md:text-3xl text-[#647C9F] leading-relaxed mb-8 font-light whitespace-pre-line">"{active.quote}"</blockquote>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <cite className="font-spicy text-xl font-semibold text-[#647C9F] not-italic">{active.author}</cite>
+                        <p className="text-[#647C9F]/70">{active.role}{active.company ? ` · ${active.company}` : ''}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Absolute-positioned navigation arrows for consistent placement */}
+                  <motion.button
+                    aria-label="Previous testimonial"
+                    onClick={prev}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-gradient-to-r from-[#97CEC8] to-[#647C9F] text-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </motion.button>
+                  <motion.button
+                    aria-label="Next testimonial"
+                    onClick={next}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-gradient-to-r from-[#97CEC8] to-[#647C9F] text-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </motion.button>
+                </>
+              )}
+            </motion.div>
+
+            {/* Indicators (for featured only) */}
+            {!loading && !error && featuredTestimonials.length > 0 && (
+              <motion.div
+                className="flex justify-center space-x-3 mt-8"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
               >
-                <Quote
-                  className="w-8 h-8"
-                  style={{ color: testimonials[currentTestimonial].color }}
-                />
-              </div>
-
-              <div className="pt-12">
-                <div className="flex mb-6">
-                  {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-6 h-6 fill-current"
-                      style={{ color: testimonials[currentTestimonial].color }}
-                    />
-                  ))}
-                </div>
-
-                <blockquote className="text-2xl md:text-3xl text-[#647C9F] leading-relaxed mb-8 font-light">
-                  "{testimonials[currentTestimonial].quote}"
-                </blockquote>
-
-                <div className="flex items-center justify-between">
-                  <div>
-                    <cite className="font-spicy text-xl font-semibold text-[#647C9F] not-italic">
-                      {testimonials[currentTestimonial].author}
-                    </cite>
-                    <p className="text-[#647C9F]/70">
-                      {testimonials[currentTestimonial].role} at {testimonials[currentTestimonial].company}
-                    </p>
-                  </div>
-
-                  <div className="flex space-x-4">
-                    <motion.button
-                      onClick={prevTestimonial}
-                      className="w-12 h-12 bg-gradient-to-r from-[#97CEC8] to-[#647C9F] text-white rounded-full flex items-center justify-center hover:shadow-lg transition-all duration-200 hover:scale-110"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <ChevronLeft className="w-6 h-6" />
-                    </motion.button>
-                    <motion.button
-                      onClick={nextTestimonial}
-                      className="w-12 h-12 bg-gradient-to-r from-[#97CEC8] to-[#647C9F] text-white rounded-full flex items-center justify-center hover:shadow-lg transition-all duration-200 hover:scale-110"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <ChevronRight className="w-6 h-6" />
-                    </motion.button>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Testimonial Indicators */}
-            <motion.div 
-              className="flex justify-center space-x-3 mt-8"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              {testimonials.map((_, index) => (
-                <motion.button
-                  key={index}
-                  onClick={() => setCurrentTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-200 ${
-                    index === currentTestimonial
-                      ? 'bg-[#E77C96] scale-125'
-                      : 'bg-[#647C9F]/30 hover:bg-[#647C9F]/50'
-                  }`}
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }}
-                />
-              ))}
-            </motion.div>
+                {featuredTestimonials.map((_, index) => (
+                  <motion.button
+                    key={index}
+                    onClick={() => { setCurrentTestimonial(index); startAuto(featuredTestimonials.length); }}
+                    className={`w-3 h-3 rounded-full transition-all duration-200 ${index === currentTestimonial ? 'bg-[#E77C96] scale-125' : 'bg-[#647C9F]/30 hover:bg-[#647C9F]/50'}`}
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}
+                  />
+                ))}
+              </motion.div>
+            )}
           </div>
         </div>
       </section>
 
       {/* All Testimonials Grid */}
-      <section className="py-20 bg-gradient-to-b from-[#97CEC8]/10 to-white">
+      <section id="all-testimonials" className="py-20 bg-gradient-to-b from-[#97CEC8]/10 to-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-spicy text-3xl md:text-5xl font-bold text-[#647C9F] mb-6">
-              More Happy Clients
-            </h2>
-            <p className="text-xl text-[#647C9F]/70 max-w-2xl mx-auto">
-              Every project is an opportunity to build lasting relationships and create meaningful impact.
-            </p>
+            <h2 className="font-spicy text-3xl md:text-5xl font-bold text-[#647C9F] mb-6">More Happy Clients</h2>
+            <p className="text-xl text-[#647C9F]/70 max-w-2xl mx-auto">Every project is an opportunity to build lasting relationships and create meaningful impact.</p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            {testimonials.map((testimonial, index) => (
+            {loading && <div className="col-span-full text-center text-[#647C9F]/60">Loading testimonials...</div>}
+            {error && !loading && <div className="col-span-full text-center text-red-500">{error}</div>}
+            {!loading && !error && !allTestimonials.length && <div className="col-span-full text-center text-[#647C9F]/60">No testimonials available.</div>}
+            {!loading && !error && allTestimonials.map((t, index) => (
               <motion.div
-                key={index}
+                key={t.id || index}
                 className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 hover:-translate-y-2"
                 variants={itemVariants}
               >
                 <div className="flex mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-5 h-5 fill-current"
-                      style={{ color: testimonial.color }}
-                    />
+                  {[...Array(t.rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 fill-current" style={{ color: t.color || '#97CEC8' }} />
                   ))}
                 </div>
-
-                <blockquote className="text-[#647C9F]/80 leading-relaxed mb-6">
-                  "{testimonial.quote}"
-                </blockquote>
-
+                <blockquote className="text-[#647C9F]/80 leading-relaxed mb-6 whitespace-pre-line">"{t.quote}"</blockquote>
                 <div className="flex items-center space-x-3">
-                  <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold"
-                    style={{ backgroundColor: testimonial.color }}
-                  >
-                    {testimonial.author.charAt(0)}
-                  </div>
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold" style={{ backgroundColor: t.color || '#97CEC8' }}>{(t.author && t.author.charAt(0)) || '?'}</div>
                   <div>
-                    <cite className="font-semibold text-[#647C9F] not-italic block">
-                      {testimonial.author}
-                    </cite>
-                    <p className="text-sm text-[#647C9F]/70">
-                      {testimonial.role}
-                    </p>
+                    <cite className="font-semibold text-[#647C9F] not-italic block">{t.author || 'Anonymous'}</cite>
+                    <p className="text-sm text-[#647C9F]/70">{t.role}{t.company ? ` · ${t.company}` : ''}</p>
                   </div>
                 </div>
               </motion.div>
@@ -289,7 +239,7 @@ const Testimonials = () => {
       </section>
 
       {/* CTA Section */}
-      <motion.section 
+      <motion.section
         className="py-20 bg-gradient-to-r from-[#E77C96] to-[#FBD66E]"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -297,7 +247,7 @@ const Testimonials = () => {
         transition={{ duration: 0.8 }}
       >
         <div className="container mx-auto px-4 text-center">
-          <motion.h2 
+          <motion.h2
             className="font-spicy text-3xl md:text-5xl font-bold text-white mb-6"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
@@ -306,7 +256,7 @@ const Testimonials = () => {
           >
             Ready to Join Our Happy Clients?
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-white/90 mb-8 max-w-2xl mx-auto"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
@@ -315,7 +265,7 @@ const Testimonials = () => {
           >
             Let's work together to create something amazing that your customers will love.
           </motion.p>
-          <motion.div 
+          <motion.div
             className="flex justify-center"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
