@@ -136,6 +136,15 @@ const Services = () => {
           >
             Our Educational Services
           </motion.h1>
+          {/* Tagline */}
+          <motion.p
+            className="text-sm uppercase tracking-wide text-[#647C9F]/70 mb-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.05, duration: 0.4 }}
+          >
+            Nurturing growth, Empowering strength
+          </motion.p>
           <motion.p 
             className="text-xl text-[#647C9F]/70 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}

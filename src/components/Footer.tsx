@@ -1,10 +1,9 @@
 //!TODO: Update social media links when available
 
 import { Link } from 'react-router-dom';
-import { Sparkles, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Sparkles, Mail, Phone, MapPin, Facebook, Instagram } from 'lucide-react';
 
 const Footer = () => {
-  const year = new Date().getFullYear();
   return (
     <footer className="bg-gradient-to-br from-[#647C9F] via-[#97CEC8] to-[#647C9F] text-white">
       <div className="container mx-auto px-4 py-12">
@@ -16,7 +15,7 @@ const Footer = () => {
               <span className="font-spicy text-2xl font-bold">Hero Brain</span>
             </div>
             <p className="text-white/90 leading-relaxed">
-              //Crafting playful, human-centered experiences that unite teams, spark creativity, and drive meaningful results.//
+              Nurturing growth, Empowering strength
             </p>
           </div>
 
@@ -28,7 +27,7 @@ const Footer = () => {
                 { path: '/services', label: 'Services' },
                 { path: '/team', label: 'Meet the Team' },
                 { path: '/testimonials', label: 'Testimonials' },
-                // { path: '/blog', label: 'Blog' },
+                { path: '/collaborate', label: 'Collaborate' },
               ].map((link) => (
                 <Link
                   key={link.path}
@@ -61,30 +60,30 @@ const Footer = () => {
           </div>
 
           {/* Social Media */}
-          {/* <div className="space-y-4">
+          <div className="space-y-4">
             <h3 className="font-spicy text-lg font-semibold">Follow Us</h3>
             <div className="flex space-x-4">
               {[
-                { Icon: Facebook, href: '#' },
-                { Icon: Twitter, href: '#' },
-                { Icon: Instagram, href: '#' },
-                { Icon: Linkedin, href: '#' },
+                { Icon: Instagram, href: 'https://www.instagram.com/herobrain_jb?igsh=MTZ0ajB4aTN0YXliMw%3D%3D&utm_source=qr' },
+                { Icon: Facebook, href: 'https://www.facebook.com/share/1CY3ji38HF/?mibextid=wwXIfr' },
               ].map(({ Icon, href }, index) => (
                 <a
                   key={index}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-[#FBD66E] hover:text-[#647C9F] transition-all duration-200 hover:scale-110"
                 >
                   <Icon size={20} />
                 </a>
               ))}
             </div>
-          </div> */}
+          </div>
         </div>
 
         <div className="border-t border-white/20 mt-8 pt-8 text-center">
           <p className="text-white/80">
-            © {year} Hero Brain. Made with ❤️ in Malaysia. All rights reserved.
+            © 2025 Hero Brain. Made with ❤️ in Malaysia. All rights reserved.
           </p>
         </div>
       </div>

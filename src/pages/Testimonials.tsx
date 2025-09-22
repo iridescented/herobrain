@@ -87,13 +87,22 @@ const Testimonials = () => {
       <section className="py-20 bg-gradient-to-br from-[#97CEC8]/20 to-[#FBD66E]/20">
         <div className="container mx-auto px-4 text-center">
           <motion.h1
-            className="font-spicy text-4xl md:text-6xl font-bold text-[#647C9F] mb-6"
+            className="font-spicy text-4xl md:text-6xl font-bold text-[#647C9F] mb-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
             What Our Clients Say
           </motion.h1>
+          {/* Tagline */}
+          <motion.p
+            className="text-sm uppercase tracking-wide text-[#647C9F]/70 mb-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.05, duration: 0.4 }}
+          >
+            Nurturing growth, Empowering strength
+          </motion.p>
           <motion.p
             className="text-xl text-[#647C9F]/70 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
