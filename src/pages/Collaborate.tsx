@@ -83,287 +83,237 @@ const Collaborate = () => {
 
   return (
     <div className="pt-20">
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-[#97CEC8]/20 via-white to-[#E77C96]/20">
+      {/* Hero */}
+      <section className="py-20 bg-gradient-to-br from-[#97CEC8]/20 to-[#FBD66E]/20">
         <div className="container mx-auto px-4 text-center">
-          <motion.div
-            className="max-w-3xl mx-auto"
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
+          <motion.h1
+            className="font-spicy text-4xl md:text-6xl font-bold text-[#647C9F] mb-2"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            <motion.div
-              className="inline-block p-4 bg-gradient-to-r from-[#97CEC8] to-[#E77C96] rounded-full mb-8"
-              variants={itemVariants}
-            >
-              <Users className="w-12 h-12 text-white" />
-            </motion.div>
+            🤝 Collaborate with Us
+          </motion.h1>
+          <motion.p
+            className="text-sm uppercase tracking-wide text-[#647C9F]/70 mb-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.05, duration: 0.4 }}
+          >
+            nurturing growth, empowering strength
+          </motion.p>
+          <motion.p
+            className="text-xl text-[#647C9F]/70 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.6 }}
+          >
+            At <span className="font-semibold">Hero Brain Education Centre</span>, we believe learning doesn’t happen in isolation.
+            It takes a whole community — parents, teachers, schools, professionals, and even businesses — to help children thrive.
+            That’s why we love collaborating with like-minded individuals and organisations who share our vision of supporting children and families.
+          </motion.p>
+        </div>
+      </section>
 
-            <motion.h1
-              className="font-spicy text-4xl md:text-6xl font-bold text-[#647C9F] mb-6"
-              variants={itemVariants}
-            >
-              Let's Create Something
-              <br />
-              <span className="bg-gradient-to-r from-[#E77C96] to-[#FBD66E] bg-clip-text text-transparent">
-                Amazing Together
-              </span>
-            </motion.h1>
+      {/* Why Collaborate */}
+      <section className="py-16">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-2xl md:text-3xl font-spicy text-[#647C9F] mb-4">Why Collaborate with Hero Brain?</h2>
+            <ul className="space-y-3 text-[#647C9F]/90">
+              <li>🌟 <em>Shared Purpose</em> – Helping children discover their strengths and build confidence through joyful learning.</li>
+              <li>🌟 <em>Holistic Support</em> – We care for children and families; when caregivers are supported, children flourish.</li>
+              <li>🌟 <em>Long-Term Vision</em> – Preparing young people to live, work, and thrive independently in society.</li>
+              <li>🌟 <em>Community Impact</em> – Create opportunities that benefit students, families, and the wider community.</li>
+              <li>🌟 <em>Inclusive Opportunities</em> – Partnering with businesses to open doors from volunteering to internships to employment.</li>
+            </ul>
+          </motion.div>
+        </div>
+      </section>
 
-            <motion.p
-              className="text-xl md:text-2xl text-[#647C9F]/70 leading-relaxed mb-8"
-              variants={itemVariants}
-            >
-              //We believe the best ideas come from collaboration. Whether you're a fellow creative,
-              a business owner, or an organization with a mission, we'd love to explore how we can
-              work together to create something meaningful.//
-            </motion.p>
+      {/* Who We Collaborate With */}
+      <section className="py-16 bg-gradient-to-b from-white to-[#97CEC8]/10">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-2xl md:text-3xl font-spicy text-[#647C9F] mb-4">Who We Collaborate With</h2>
+            <ul className="list-disc pl-6 space-y-2 text-[#647C9F]/90">
+              <li><em>Parents & Volunteers</em> who want to share their skills, time, or experiences</li>
+              <li><em>Professionals</em> (speech therapists, occupational therapists, psychologists, counsellors, play/creative therapists, etc.)</li>
+              <li><em>Therapists/Service Providers</em> offering parent support programs, therapy, or workshops</li>
+              <li><em>Educators & Trainers</em> (teachers, coaches, facilitators)</li>
+              <li><em>Community Creatives</em> (storytellers, artists, musicians, mindfulness coaches, etc.)</li>
+              <li><em>Community Service Partners</em> (NGOs, local groups, and businesses championing inclusion)</li>
+            </ul>
+          </motion.div>
+        </div>
+      </section>
 
-            <motion.div variants={itemVariants}>
+      {/* What Collaboration Looks Like */}
+      <section className="py-16">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-2xl md:text-3xl font-spicy text-[#647C9F] mb-4">What Collaboration Looks Like</h2>
+            <ul className="list-disc pl-6 space-y-2 text-[#647C9F]/90">
+              <li><em>Workshops & Talks</em> for parents, teachers, students, or workplaces</li>
+              <li><em>Joint Events</em> such as holiday camps, family activities, or one-off events</li>
+              <li><em>Special Programs</em> combining different expertise to create unique experiences</li>
+              <li><em>Resource Development</em> – guides and toolkits co-created for families and schools</li>
+              <li><em>Inclusive Opportunities</em> – training, exposure, or employment pathways for young adults with special needs</li>
+              <li><em>Inclusion Workshops for Workplaces</em> – practical training for inclusive practices</li>
+              <li><em>Referral Partnerships</em> – discounted rates or priority slots for our families</li>
+              <li><em>Space Rental</em> – we have a space to rent for storytelling sessions, art classes, music classes, etc.</li>
+            </ul>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Our Belief + CTA */}
+      <section className="py-16 bg-gradient-to-b from-white to-[#97CEC8]/10">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-2xl md:text-3xl font-spicy text-[#647C9F] mb-4">Our Belief 🌱</h2>
+            <p className="text-[#647C9F]/90 leading-relaxed">
+              We believe in <em>supporting as a community and collaborating as a village</em>. This means caring for children beyond school years and preparing them for adulthood — while supporting parents so they feel equipped and encouraged.
+            </p>
+            <p className="text-[#647C9F]/90 leading-relaxed mt-4">
+              Every partnership — big or small, one-off or long-term — helps build a more inclusive world for children, families, and communities.
+            </p>
+            <div className="mt-6">
               <Link
                 to="/contact"
-                className="group inline-flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-[#E77C96] to-[#FBD66E] text-white rounded-full font-semibold hover:shadow-xl hover:scale-105 transition-all duration-200"
+                className="inline-block px-6 py-3 bg-[#E77C96] text-white rounded-full font-semibold hover:bg-[#d46a83] transition-colors"
               >
-                <span>Start the Conversation</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                📩 Have an idea? Reach out — we’d love to collaborate with you.
               </Link>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Benefits Section */}
+      {/* FAQs */}
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="font-spicy text-3xl md:text-5xl font-bold text-[#647C9F] mb-6">
-              Why Collaborate with Us?
-            </h2>
-            <p className="text-xl text-[#647C9F]/70 max-w-3xl mx-auto">
-              //Collaboration isn't just about working together – it's about creating something
-              greater than the sum of our individual parts.//
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5 }}
           >
-            {benefits.map((benefit, index) => (
-              <motion.div
-                key={index}
-                className="group text-center bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
-                variants={itemVariants}
-              >
-                <div
-                  className="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200"
-                  style={{ backgroundColor: `${benefit.color}20` }}
-                >
-                  <benefit.icon
-                    className="w-10 h-10"
-                    style={{ color: benefit.color }}
-                  />
-                </div>
-                <h3 className="font-spicy text-xl font-semibold text-[#647C9F] mb-4">
-                  {benefit.title}
-                </h3>
-                <p className="text-[#647C9F]/70 leading-relaxed">
-                  {benefit.description}
+            <h2 className="text-2xl md:text-3xl font-spicy text-[#647C9F] mb-6">FAQs</h2>
+            <div className="space-y-4">
+              <details className="group rounded-xl border border-[#647C9F]/20 p-4 open:bg-white/60">
+                <summary className="cursor-pointer font-semibold text-[#647C9F]">1. What is Hero Brain?</summary>
+                <p className="mt-2 text-[#647C9F]/80">
+                  We’re a holistic education centre providing intervention and support in literacy, math, social-emotional learning, social skills, and school readiness. We believe every child can learn with the right strategies, support, and encouragement.
                 </p>
-              </motion.div>
-            ))}
+              </details>
+
+              <details className="group rounded-xl border border-[#647C9F]/20 p-4 open:bg-white/60">
+                <summary className="cursor-pointer font-semibold text-[#647C9F]">2. Who do you support?</summary>
+                <p className="mt-2 text-[#647C9F]/80">
+                  We support learners from age 3 up to adults. Each learner has unique strengths and challenges; we personalise learning to meet them where they are.
+                </p>
+              </details>
+
+              <details className="group rounded-xl border border-[#647C9F]/20 p-4 open:bg-white/60">
+                <summary className="cursor-pointer font-semibold text-[#647C9F]">3. Do you only support children with special needs?</summary>
+                <p className="mt-2 text-[#647C9F]/80">
+                  No. Our programmes are inclusive — we work with any learner who may benefit from extra support, with or without a diagnosis.
+                </p>
+              </details>
+
+              <details className="group rounded-xl border border-[#647C9F]/20 p-4 open:bg-white/60">
+                <summary className="cursor-pointer font-semibold text-[#647C9F]">4. How do I know if my child needs intervention?</summary>
+                <p className="mt-2 text-[#647C9F]/80">
+                  If your child struggles with schoolwork, focus, confidence, peer pace, or shows frustration toward learning, intervention may help. We recommend an initial screening or trial session.
+                </p>
+              </details>
+
+              <h3 className="font-spicy text-xl text-[#647C9F] mt-6">Programmes & Classes</h3>
+
+              <details className="group rounded-xl border border-[#647C9F]/20 p-4 open:bg-white/60">
+                <summary className="cursor-pointer font-semibold text-[#647C9F]">5. What kind of programmes do you offer?</summary>
+                <p className="mt-2 text-[#647C9F]/80">
+                  Interventions in literacy, math, social-emotional learning, social skills, and school readiness; plus workshops and parent support programmes.
+                </p>
+              </details>
+
+              <details className="group rounded-xl border border-[#647C9F]/20 p-4 open:bg-white/60">
+                <summary className="cursor-pointer font-semibold text-[#647C9F]">6. Are your programmes the same as therapy?</summary>
+                <p className="mt-2 text-[#647C9F]/80">
+                  We provide educational interventions (not clinical therapy) and collaborate with therapists (e.g., clinical psychologist, speech therapists) for holistic support.
+                </p>
+              </details>
+
+              <details className="group rounded-xl border border-[#647C9F]/20 p-4 open:bg-white/60">
+                <summary className="cursor-pointer font-semibold text-[#647C9F]">7. How big are the classes?</summary>
+                <p className="mt-2 text-[#647C9F]/80">
+                  Mostly one-to-one sessions; small groups (2–8 students) for social skills, SEL, and certain interventions.
+                </p>
+              </details>
+
+              <h3 className="font-spicy text-xl text-[#647C9F] mt-6">Practical Matters</h3>
+
+              <details className="group rounded-xl border border-[#647C9F]/20 p-4 open:bg-white/60">
+                <summary className="cursor-pointer font-semibold text-[#647C9F]">8. How often should sessions be?</summary>
+                <p className="mt-2 text-[#647C9F]/80">
+                  Depends on needs and goals. Many attend 1–2 times per week; we’ll plan together with you.
+                </p>
+              </details>
+
+              <details className="group rounded-xl border border-[#647C9F]/20 p-4 open:bg-white/60">
+                <summary className="cursor-pointer font-semibold text-[#647C9F]">9. How much do programmes cost?</summary>
+                <p className="mt-2 text-[#647C9F]/80">
+                  Pricing varies by programme and frequency. Contact us for a customised plan.
+                </p>
+              </details>
+
+              <details className="group rounded-xl border border-[#647C9F]/20 p-4 open:bg-white/60">
+                <summary className="cursor-pointer font-semibold text-[#647C9F]">10. Can parents sit in during sessions?</summary>
+                <p className="mt-2 text-[#647C9F]/80">
+                  We encourage independence during sessions; we provide feedback and updates after each class. Some programmes include parent involvement.
+                </p>
+              </details>
+
+              <h3 className="font-spicy text-xl text-[#647C9F] mt-6">Impact & Progress</h3>
+
+              <details className="group rounded-xl border border-[#647C9F]/20 p-4 open:bg-white/60">
+                <summary className="cursor-pointer font-semibold text-[#647C9F]">11. How will I know if my child is progressing?</summary>
+                <p className="mt-2 text-[#647C9F]/80">
+                  Regular updates and reviews focusing on confidence, motivation, and lasting skills — not just academic results.
+                </p>
+              </details>
+
+              <details className="group rounded-xl border border-[#647C9F]/20 p-4 open:bg-white/60">
+                <summary className="cursor-pointer font-semibold text-[#647C9F]">12. How does intervention help in school?</summary>
+                <p className="mt-2 text-[#647C9F]/80">
+                  By building foundational skills, self-confidence, and social-emotional regulation, learners are better equipped for challenges in school and beyond. We collaborate with parents and, where appropriate, schools for consistency.
+                </p>
+              </details>
+            </div>
           </motion.div>
         </div>
       </section>
-
-      {/* Collaboration Types */}
-      <section className="py-20 bg-gradient-to-b from-[#97CEC8]/10 to-[#FBD66E]/10">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="font-spicy text-3xl md:text-5xl font-bold text-[#647C9F] mb-6">
-              Ways We Can Work Together
-            </h2>
-            <p className="text-xl text-[#647C9F]/70 max-w-3xl mx-auto">
-              Every collaboration is unique, but here are some of the ways we love to partner with others.
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-5xl mx-auto"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            {collaborationTypes.map((type, index) => (
-              <motion.div
-                key={index}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
-                variants={itemVariants}
-              >
-                <div
-                  className="h-2"
-                  style={{
-                    background: `linear-gradient(90deg, ${['#97CEC8', '#FBD66E', '#E77C96'][index]
-                      } 0%, ${['#647C9F', '#EEA27B', '#97CEC8'][index]} 100%)`
-                  }}
-                />
-                <div className="p-8">
-                  <h3 className="font-spicy text-2xl font-semibold text-[#647C9F] mb-4">
-                    {type.title}
-                  </h3>
-                  <p className="text-[#647C9F]/70 leading-relaxed mb-6">
-                    {type.description}
-                  </p>
-                  <div className="space-y-3">
-                    {type.examples.map((example, exampleIndex) => (
-                      <div key={exampleIndex} className="flex items-center space-x-3">
-                        <CheckCircle
-                          className="w-5 h-5 flex-shrink-0"
-                          style={{ color: ['#97CEC8', '#FBD66E', '#E77C96'][index] }}
-                        />
-                        <span className="text-[#647C9F]/80">{example}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="py-20">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto">
-            <motion.div
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="font-spicy text-3xl md:text-5xl font-bold text-[#647C9F] mb-6">
-                Our Collaboration Process
-              </h2>
-              <p className="text-xl text-[#647C9F]/70">
-                We believe great collaborations start with great conversations.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-3 gap-8"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-            >
-              {[
-                {
-                  step: '01',
-                  title: 'Connect & Explore',
-                  description: '//We start with a friendly chat to understand your ideas, goals, and how we might work together.//',
-                  color: '#97CEC8'
-                },
-                {
-                  step: '02',
-                  title: 'Plan & Design',
-                  description: '//Together, we create a collaboration plan that leverages both our strengths and aligns with our values.//',
-                  color: '#FBD66E'
-                },
-                {
-                  step: '03',
-                  title: 'Create & Launch',
-                  description: '//We bring our shared vision to life, maintaining open communication throughout the process.//',
-                  color: '#E77C96'
-                }
-              ].map((step, index) => (
-                <motion.div key={index} className="text-center" variants={itemVariants}>
-                  <div
-                    className="w-16 h-16 mx-auto rounded-full flex items-center justify-center text-white font-spicy text-xl font-bold mb-6"
-                    style={{ backgroundColor: step.color }}
-                  >
-                    {step.step}
-                  </div>
-                  <h3 className="font-spicy text-xl font-semibold text-[#647C9F] mb-4">
-                    {step.title}
-                  </h3>
-                  <p className="text-[#647C9F]/70 leading-relaxed">
-                    {step.description}
-                  </p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <motion.section
-        className="py-20 bg-gradient-to-r from-[#97CEC8] via-[#FBD66E] to-[#E77C96]"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="container mx-auto px-4 text-center">
-          <motion.h2
-            className="font-spicy text-3xl md:text-5xl font-bold text-white mb-6"
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            Ready to Start Our Journey Together?
-          </motion.h2>
-          <motion.p
-            className="text-xl text-white/90 mb-8"
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            //Whether you have a specific project in mind or just want to explore possibilities,
-            we'd love to hear from you. Let's create something amazing together!//
-          </motion.p>
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            <Link
-              to="/contact"
-              className="px-10 py-5 bg-white text-[#647C9F] rounded-full font-bold text-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
-            >
-              Get in Touch
-            </Link>
-            <Link
-              to="/services"
-              className="px-10 py-5 border-2 border-white text-white rounded-full font-bold text-lg hover:bg-white hover:text-[#647C9F] transition-all duration-200"
-            >
-              View Our Services
-            </Link>
-          </motion.div>
-        </div>
-      </motion.section>
     </div>
   );
 };
