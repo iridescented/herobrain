@@ -120,7 +120,7 @@ const Contact = () => {
                   {
                     icon: Phone,
                     title: 'Call Us',
-                    content: '+6016-7048484',
+                    content: '+60 16-7048484',
                     description: 'By appointment only',
                     color: '#97CEC8'
                   },
@@ -141,7 +141,7 @@ const Contact = () => {
                   {
                     icon: MessageCircle,
                     title: 'WhatsApp',
-                    content: '016-7048484',
+                    content: '+60 16-7048484',
                     description: 'Message us directly on WhatsApp',
                     color: '#25D366'
                   }
@@ -353,7 +353,7 @@ const Contact = () => {
                 },
                 {
                   question: 'How do I schedule an appointment?',
-                  answer: 'You can schedule an appointment by calling us at 016-7048484, messaging us on WhatsApp, or filling out the contact form on this page. We will get back to you within 24 hours to confirm your appointment.'
+                  answer: 'You can schedule an appointment by calling us at +60 16-7048484, messaging us on WhatsApp, or filling out the contact form on this page. We will get back to you within 24 hours to confirm your appointment.'
                 },
                 {
                   question: 'Do you offer online sessions?',

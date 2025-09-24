@@ -125,7 +125,7 @@ const Team = () => {
         'Workshops on Mental Health, Parenting, and Postpartum Wellness'
       ],
       contact: {
-        phone: '+6016-3043113',
+        phone: '+60 16-3043113',
         email: 'cheeching95@yahoo.com'
       },
       socials: [
