@@ -87,24 +87,26 @@ const Testimonials = () => {
       <section className="py-20 bg-gradient-to-br from-[#97CEC8]/20 to-[#FBD66E]/20">
         <div className="container mx-auto px-4 text-center">
           <motion.h1
-            className="font-spicy text-4xl md:text-6xl font-bold text-[#647C9F] mb-2"
+            className="font-spicy text-4xl md:text-6xl font-bold text-[#647C9F] mb-3"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
             What Our Clients Say
           </motion.h1>
-          {/* Tagline */}
+
+          {/* Tagline - same font as heading, smaller */}
           <motion.p
-            className="text-sm uppercase tracking-wide text-[#647C9F]/70 mb-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.05, duration: 0.4 }}
+            className="font-spicy text-xl md:text-2xl text-[#647C9F]/70 leading-relaxed max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05, duration: 0.6 }}
           >
-            Nurturing growth, Empowering strength
+            nurturing growth, empowering strength
           </motion.p>
+
           <motion.p
-            className="text-xl text-[#647C9F]/70 max-w-3xl mx-auto"
+            className="text-lg md:text-xl text-[#647C9F]/70 leading-relaxed max-w-3xl mx-auto mt-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.6 }}

@@ -126,11 +126,11 @@ const Collaborate = () => {
           >
             <h2 className="text-2xl md:text-3xl font-spicy text-[#647C9F] mb-4">Why Collaborate with Hero Brain?</h2>
             <ul className="space-y-3 text-[#647C9F]/90">
-              <li>🌟 <em>Shared Purpose</em> – Helping children discover their strengths and build confidence through joyful learning.</li>
-              <li>🌟 <em>Holistic Support</em> – We care for children and families; when caregivers are supported, children flourish.</li>
-              <li>🌟 <em>Long-Term Vision</em> – Preparing young people to live, work, and thrive independently in society.</li>
-              <li>🌟 <em>Community Impact</em> – Create opportunities that benefit students, families, and the wider community.</li>
-              <li>🌟 <em>Inclusive Opportunities</em> – Partnering with businesses to open doors from volunteering to internships to employment.</li>
+              <li>🌟 <strong>Shared Purpose</strong> – Helping children discover their strengths and build confidence through joyful learning.</li>
+              <li>🌟 <strong>Holistic Support</strong> – We care for children and families; when caregivers are supported, children flourish.</li>
+              <li>🌟 <strong>Long-Term Vision</strong> – Preparing young people to live, work, and thrive independently in society.</li>
+              <li>🌟 <strong>Community Impact</strong> – Create opportunities that benefit students, families, and the wider community.</li>
+              <li>🌟 <strong>Inclusive Opportunities</strong> – Partnering with businesses to open doors from volunteering to internships to employment.</li>
             </ul>
           </motion.div>
         </div>
@@ -147,12 +147,12 @@ const Collaborate = () => {
           >
             <h2 className="text-2xl md:text-3xl font-spicy text-[#647C9F] mb-4">Who We Collaborate With</h2>
             <ul className="list-disc pl-6 space-y-2 text-[#647C9F]/90">
-              <li><em>Parents & Volunteers</em> who want to share their skills, time, or experiences</li>
-              <li><em>Professionals</em> (speech therapists, occupational therapists, psychologists, counsellors, play/creative therapists, etc.)</li>
-              <li><em>Therapists/Service Providers</em> offering parent support programs, therapy, or workshops</li>
-              <li><em>Educators & Trainers</em> (teachers, coaches, facilitators)</li>
-              <li><em>Community Creatives</em> (storytellers, artists, musicians, mindfulness coaches, etc.)</li>
-              <li><em>Community Service Partners</em> (NGOs, local groups, and businesses championing inclusion)</li>
+              <li><strong>Parents & Volunteers</strong> who want to share their skills, time, or experiences</li>
+              <li><strong>Professionals</strong> (speech therapists, occupational therapists, psychologists, counsellors, play/creative therapists, etc.)</li>
+              <li><strong>Therapists/Service Providers</strong> offering parent support programs, therapy, or workshops</li>
+              <li><strong>Educators & Trainers</strong> (teachers, coaches, facilitators)</li>
+              <li><strong>Community Creatives</strong> (storytellers, artists, musicians, mindfulness coaches, etc.)</li>
+              <li><strong>Community Service Partners</strong> (NGOs, local groups, and businesses championing inclusion)</li>
             </ul>
           </motion.div>
         </div>
@@ -169,14 +169,14 @@ const Collaborate = () => {
           >
             <h2 className="text-2xl md:text-3xl font-spicy text-[#647C9F] mb-4">What Collaboration Looks Like</h2>
             <ul className="list-disc pl-6 space-y-2 text-[#647C9F]/90">
-              <li><em>Workshops & Talks</em> for parents, teachers, students, or workplaces</li>
-              <li><em>Joint Events</em> such as holiday camps, family activities, or one-off events</li>
-              <li><em>Special Programs</em> combining different expertise to create unique experiences</li>
-              <li><em>Resource Development</em> – guides and toolkits co-created for families and schools</li>
-              <li><em>Inclusive Opportunities</em> – training, exposure, or employment pathways for young adults with special needs</li>
-              <li><em>Inclusion Workshops for Workplaces</em> – practical training for inclusive practices</li>
-              <li><em>Referral Partnerships</em> – discounted rates or priority slots for our families</li>
-              <li><em>Space Rental</em> – we have a space to rent for storytelling sessions, art classes, music classes, etc.</li>
+              <li><strong>Workshops & Talks</strong> for parents, teachers, students, or workplaces</li>
+              <li><strong>Joint Events</strong> such as holiday camps, family activities, or one-off events</li>
+              <li><strong>Special Programs</strong> combining different expertise to create unique experiences</li>
+              <li><strong>Resource Development</strong> – guides and toolkits co-created for families and schools</li>
+              <li><strong>Inclusive Opportunities</strong> – training, exposure, or employment pathways for young adults with special needs</li>
+              <li><strong>Inclusion Workshops for Workplaces</strong> – practical training for inclusive practices</li>
+              <li><strong>Referral Partnerships</strong> – discounted rates or priority slots for our families</li>
+              <li><strong>Space Rental</strong> – we have a space to rent for storytelling sessions, art classes, music classes, etc.</li>
             </ul>
           </motion.div>
         </div>
@@ -193,7 +193,7 @@ const Collaborate = () => {
           >
             <h2 className="text-2xl md:text-3xl font-spicy text-[#647C9F] mb-4">Our Belief 🌱</h2>
             <p className="text-[#647C9F]/90 leading-relaxed">
-              We believe in <em>supporting as a community and collaborating as a village</em>. This means caring for children beyond school years and preparing them for adulthood — while supporting parents so they feel equipped and encouraged.
+              We believe in <strong>supporting as a community and collaborating as a village</strong>. This means caring for children beyond school years and preparing them for adulthood — while supporting parents so they feel equipped and encouraged.
             </p>
             <p className="text-[#647C9F]/90 leading-relaxed mt-4">
               Every partnership — big or small, one-off or long-term — helps build a more inclusive world for children, families, and communities.

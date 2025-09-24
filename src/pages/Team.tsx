@@ -125,11 +125,11 @@ const Team = () => {
         'Workshops on Mental Health, Parenting, and Postpartum Wellness'
       ],
       contact: {
-        phone: '016-3043113',
+        phone: '+6016-3043113',
         email: 'cheeching95@yahoo.com'
       },
       socials: [
-        { icon: Phone, href: 'tel:016-3043113' },
+        { icon: Phone, href: 'tel:+60163043113' },
         { icon: Mail, href: 'mailto:cheeching95@yahoo.com' }
       ]
     }
@@ -387,7 +387,7 @@ const Team = () => {
                         <Mail size={16} className="mr-2" />
                         <span>{teamMembers[modalMember].contact.email}</span>
                       </div>
-                  </div>
+                    </div>
                   </div>
                 )}
 

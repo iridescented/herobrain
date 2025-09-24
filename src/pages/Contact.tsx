@@ -120,7 +120,7 @@ const Contact = () => {
                   {
                     icon: Phone,
                     title: 'Call Us',
-                    content: '016-7048484',
+                    content: '+6016-7048484',
                     description: 'By appointment only',
                     color: '#97CEC8'
                   },
